@@ -41,15 +41,12 @@ function UpdateUser() {
     const convertImageToBase64 = (file) => {
         return new Promise((resolve, reject) => {
             const reader = new FileReader();
-
             reader.onload = () => {
                 resolve(reader.result);
             };
-
             reader.onerror = (error) => {
                 reject(error);
             };
-
             reader.readAsDataURL(file);
         });
     }
@@ -60,9 +57,6 @@ function UpdateUser() {
             try {
                 const base64String = await convertImageToBase64(file);
                 setAvatarExternalUrl(base64String)
-
-                // Ở đây, bạn có thể gửi base64String lên Google để tìm kiếm ảnh
-                // Ghi mã của bạn để thực hiện hành động tương ứng với base64String
             } catch (error) {
                 console.error('Error converting image to base64:', error);
             }
@@ -70,18 +64,16 @@ function UpdateUser() {
     }
     const validate = () => {
         const validationErrors = {};
-
+        if (description.length > 128) {
+            validationErrors.description = 'description length less than 128'
+        }
         return Object.keys(validationErrors).length === 0;
     };
     if (loading) return
     const handleSubmit = async (e) => {
         e.preventDefault();
-
-        // Thực hiện validation trước khi submit
         const isValid = validate();
         if (isValid) {
-            // Gửi dữ liệu lên server hoặc thực hiện các thao tác khác
-            // ...
             try {
                 setHasError(false)
                 const response = await updateUserMutation({

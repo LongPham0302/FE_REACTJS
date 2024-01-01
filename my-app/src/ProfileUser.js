@@ -27,7 +27,6 @@ const ProfileCard = () => {
   }, [updateUser]);
 
   const handleClick = () => {
-    // Chuyển trang khi người dùng click vào button
     navigate('/updateProfileUser');
   };
   const logOut = () => {

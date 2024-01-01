@@ -24,7 +24,6 @@ function SignUp() {
     const id = localStorage.getItem('userId');
     useEffect(() => {
         if (id) {
-            // Sử dụng useNavigate để thực hiện chuyển hướng
             navigate('/profile');
         }
     }, [id, navigate]);
@@ -36,48 +35,35 @@ function SignUp() {
     const convertImageToBase64 = (file) => {
         return new Promise((resolve, reject) => {
             const reader = new FileReader();
-
             reader.onload = () => {
                 resolve(reader.result);
             };
-
             reader.onerror = (error) => {
                 reject(error);
             };
-
             reader.readAsDataURL(file);
         });
     }
     const setAvatar = async (files) => {
         const file = files.target.files[0];
-
         if (file) {
             try {
                 const base64String = await convertImageToBase64(file);
                 setAvatarExternalUrl(base64String)
-
-                // Ở đây, bạn có thể gửi base64String lên Google để tìm kiếm ảnh
-                // Ghi mã của bạn để thực hiện hành động tương ứng với base64String
             } catch (error) {
                 console.error('Error converting image to base64:', error);
             }
         }
     }
-    // Hàm chuẩn hóa chuỗi bằng cách chuyển đổi về chữ thường và loại bỏ dấu cách
     const normalizeString = (str) => str.toLowerCase().replace(/\s/g, '');
-
-    // Hàm kiểm tra xem hai chuỗi đã chuẩn hóa có giống nhau không
     const areStringsEqual = (str1, str2) => normalizeString(str1) === normalizeString(str2);
-
     const validate = () => {
         const validationErrors = {};
-
         if (!email) {
             validationErrors.email = 'Email is required';
         } else if (!isValidEmail(email)) {
             validationErrors.email = 'Invalid email format';
         }
-
         if (!areStringsEqual(password, confirmPassword)) {
             validationErrors.password = 'Passwords do not match';
             validationErrors.confirmPassword = 'Passwords do not match';
