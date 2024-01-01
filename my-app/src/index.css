@@ -1,0 +1,30 @@
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
+
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+/* styles.css hoặc tệp CSS của bạn */
+.react-datepicker__input-container {
+  border: none; /* Loại bỏ viền */
+}
+
+.react-datepicker {
+  font-family: inherit; /* Sử dụng font chung với ứng dụng */
+}
+
+.react-datepicker__input-container input {
+  outline: none; /* Loại bỏ đường viền xung quanh input khi được focus */
+  border: none; /* Loại bỏ viền */
+}
