@@ -106,7 +106,12 @@ function SignUp() {
                     navigate('/login');
                 }
             } catch (error) {
-                setErrors(error.message)
+                if (error.message === "Response not successful: Received status code 413") {
+                    setErrors("Please select an image with a size < 50kb.")
+                }
+                else {
+                    setErrors(error.message)
+                }
                 setHasError(true)
             }
 
